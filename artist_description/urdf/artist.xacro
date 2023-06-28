@@ -1,0 +1,453 @@
+<?xml version="1.0" ?>
+<robot name="artist" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find artist_description)/urdf/artist.trans" />
+    <xacro:include filename="$(find artist_description)/gazebo/artist_plugins.gazebo" />
+    <xacro:include filename="$(find artist_description)/gazebo/artist_physics.gazebo" />
+    <xacro:include filename="$(find artist_description)/gazebo/artist_materials.gazebo" />
+
+    <link name="base_footprint" />
+    <link name="bottom_plate">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/bottom_plate.stl"/>
+            </geometry>
+            <material name="bottom_plate_material">
+                <color rgba="0 0 0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/bottom_plate.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="1.5671469141344506948e-17 -0.0012873570630667575867 0.0030000000000000000625" rpy="0 0 0"/>
+            <mass value="0.12155778176598631968" />
+            <inertia ixx="0.00021597171770147628907" ixy="0"  ixz="0" iyy="0.00013872402897952641537" iyz="0" izz="0.00035396639999040678233" />
+        </inertial>
+    </link>
+
+    <joint name="base_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="bottom_plate"/>
+    </joint>
+
+    <link name="shell">
+        <visual>
+            <origin xyz="-4.8985871965894019819e-19 0 0" rpy="3.141592653589793116 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/shell.stl"/>
+            </geometry>
+            <material name="shell_material">
+                <color rgba="0.79607843137254896693 0.79607843137254896693 0.79607843137254896693 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-4.8985871965894019819e-19 0 0" rpy="3.141592653589793116 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/shell.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="2.0301140066778392658e-08 -1.1821889984883626276e-08 -0.0078466485137592880544" rpy="0 0 0"/>
+            <mass value="0.039048730041299384297" />
+            <inertia ixx="3.1303272538033023178e-06" ixy="-1.0728042268665217919e-11"  ixz="-1.2104388554500361602e-12" iyy="3.5256252809037705789e-06" iyz="1.0622837102835076673e-12" izz="5.1873471400963497665e-06" />
+        </inertial>
+    </link>
+
+    <link name="ball">
+        <visual>
+            <origin xyz="-7.9984744069311521828e-19 0 -0.013062499999999999459" rpy="0 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/ball.stl"/>
+            </geometry>
+            <material name="ball_material">
+                <color rgba="0.79607843137254896693 0.79607843137254896693 0.79607843137254896693 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-7.9984744069311521828e-19 0 -0.013062499999999999459" rpy="0 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/ball.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="-1.8226188690435211e-19 -2.7018498882507180513e-67 1.7347234759768070944e-18" rpy="0 0 0"/>
+            <mass value="0.016171753932498391521" />
+            <inertia ixx="4.0755346746447914241e-07" ixy="0"  ixz="0" iyy="4.0755346746447914241e-07" iyz="0" izz="4.0755346746447919535e-07" />
+        </inertial>
+    </link>
+
+    <joint name="ball_joint" type="fixed">
+        <origin xyz="-8.1358947648282514083e-19 0 -0.013062499999999999459" rpy="0 -0 0" />
+        <parent link="shell" />
+        <child link="ball" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20"/>
+        <joint_properties friction="0.0"/>
+    </joint>  
+
+    <joint name="cast_joint" type="fixed">
+        <origin xyz="1.5491224724990397114e-17 -0.041287357063066756901 0" rpy="0 -0 0" />
+        <parent link="bottom_plate" />
+        <child link="shell" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <link name="left_bracket">
+        <visual>
+            <origin xyz="-0.0022305584724172031197 0.0125730796113167273 0.015116518740494001849" rpy="1.570796326794896558 5.5233092179515394012e-17 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/left_bracket.stl"/>
+            </geometry>
+            <material name="left_bracket_material">
+                <color rgba="0.62745098039215685404 0.62745098039215685404 0.62745098039215685404 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-0.0022305584724172031197 0.0125730796113167273 0.015116518740494001849" rpy="1.570796326794896558 5.5233092179515394012e-17 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/left_bracket.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="-3.0357660829594124152e-18 0.0066874465586043091783 0.0087302629978337972783" rpy="0 0 0"/>
+            <mass value="0.019656488593422231231" />
+            <inertia ixx="4.2977046883496395458e-06" ixy="-5.2850670745684201839e-23"  ixz="-1.8583437122187277759e-23" iyy="6.4235892804588892827e-06" iyz="-9.5686605004680914119e-07" izz="3.9612499220333069366e-06" />
+        </inertial>
+    </link>
+
+    <link name="left_motor">
+        <visual>
+            <origin xyz="0 0.00084884210526315478917 0" rpy="-1.570796326794896558 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/left_motor.stl"/>
+            </geometry>
+            <material name="left_motor_material">
+                <color rgba="0.5999999999999999778 0.5999999999999999778 0.5999999999999999778 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0.00084884210526315478917 0" rpy="-1.570796326794896558 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/left_motor.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="-3.1036071909624502398e-20 0.0010664881680570806061 -0.024817713969148651881" rpy="0 0 0"/>
+            <mass value="0.37643903578486942463" />
+            <inertia ixx="0.00015404852368337181305" ixy="1.547970091479438161e-13"  ixz="0" iyy="0.00015335192359750026737" iyz="-3.0678325742618169136e-06" izz="5.0039323549685964796e-05" />
+        </inertial>
+    </link>
+
+    <link name="left_wheel">
+        <visual>
+            <origin xyz="0.044043471674987899611 0.026258005082662096846 0.020815700257504302084" rpy="1.570796326794896558 1.570796326794896558 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/left_wheel.stl"/>
+            </geometry>
+            <material name="left_wheel_material">
+                <color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.044043471674987899611 0.026258005082662096846 0.020815700257504302084" rpy="1.570796326794896558 1.570796326794896558 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/left_wheel.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="4.420191185987221463e-17 -3.1918911957973250537e-16 0.0079625629128043263344" rpy="0 0 0"/>
+            <mass value="0.031501645638977442132" />
+            <inertia ixx="1.3776374395444003989e-05" ixy="-1.509064386453005498e-21"  ixz="0" iyy="1.3775783165250713404e-05" iyz="0" izz="2.3168890015917385908e-05" />
+        </inertial>
+    </link>
+
+    <joint name="lwheel_joint" type="continuous">
+        <origin xyz="1.2143064331837649661e-17 0.0078488421052631436592 0.036300000000000005873" rpy="3.141592653589793116 -0 -2.2541252291765503379" />
+        <parent link="left_motor" />
+        <child link="left_wheel" />
+        <axis xyz="0 0 -1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <joint name="lmotor_joint" type="fixed">
+        <origin xyz="1.561251128379126385e-17 0.011073079611316725968 0.018999999999999992589" rpy="-1.570796326794896558 5.5233092179515394012e-17 0" />
+        <parent link="left_bracket" />
+        <child link="left_motor" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <joint name="lbracket_joint" type="fixed">
+        <origin xyz="-0.048093999999999997863 0.015300527302599850957 0" rpy="0 -0 1.570796326794896558" />
+        <parent link="bottom_plate" />
+        <child link="left_bracket" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <link name="right_bracket">
+        <visual>
+            <origin xyz="-0.0022305584724172031197 0.0125730796113167273 0.015116518740494001849" rpy="1.570796326794896558 5.5233092179515394012e-17 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/right_bracket.stl"/>
+            </geometry>
+            <material name="right_bracket_material">
+                <color rgba="0.62745098039215685404 0.62745098039215685404 0.62745098039215685404 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-0.0022305584724172031197 0.0125730796113167273 0.015116518740494001849" rpy="1.570796326794896558 5.5233092179515394012e-17 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/right_bracket.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="-3.0357660829594124152e-18 0.0066874465586043065762 0.0087302629978338042172" rpy="0 0 0"/>
+            <mass value="0.019656488593422252048" />
+            <inertia ixx="4.2977046883496412399e-06" ixy="-5.2850670745684143064e-23"  ixz="-1.8583437122187324778e-23" iyy="6.4235892804588926708e-06" iyz="-9.568660500468080824e-07" izz="3.9612499220333077836e-06" />
+        </inertial>
+    </link>
+
+    <link name="right_motor">
+        <visual>
+            <origin xyz="0 0 0" rpy="-1.570796326794896558 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/right_motor.stl"/>
+            </geometry>
+            <material name="right_motor_material">
+                <color rgba="0.5999999999999999778 0.5999999999999999778 0.5999999999999999778 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="-1.570796326794896558 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/right_motor.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="-3.1831249762376985452e-20 0.00021764606279392576275 -0.024817713969148651881" rpy="0 0 0"/>
+            <mass value="0.37643903578486942463" />
+            <inertia ixx="0.00015404852368337181305" ixy="1.5479700914783774271e-13"  ixz="0" iyy="0.00015335192359750024027" iyz="-3.0678325742618169136e-06" izz="5.0039323549685971572e-05" />
+        </inertial>
+    </link>
+
+    <link name="right_wheel">
+        <visual>
+            <origin xyz="0.044043471674987899611 0.026258005082662100316 0.020815700257504302084" rpy="1.570796326794896558 1.570796326794896558 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/right_wheel.stl"/>
+            </geometry>
+            <material name="right_wheel_material">
+                <color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.044043471674987899611 0.026258005082662100316 0.020815700257504302084" rpy="1.570796326794896558 1.570796326794896558 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/right_wheel.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="1.1796119636642288242e-16 -2.5326962749261383578e-16 0.007962562912804435622" rpy="0 0 0"/>
+            <mass value="0.031501645638977074371" />
+            <inertia ixx="1.3776374395443968413e-05" ixy="0"  ixz="0" iyy="1.3775783165250669358e-05" iyz="0" izz="2.3168890015917355414e-05" />
+        </inertial>
+    </link>
+
+    <joint name="rwheel_joint" type="continuous">
+        <origin xyz="1.7347234759768070944e-18 0.0069999999999999992784 0.036300000000000005873" rpy="3.141592653589793116 -0 3.141592653589793116" />
+        <parent link="right_motor" />
+        <child link="right_wheel" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <joint name="rmotor_joint" type="fixed">
+        <origin xyz="1.7347234759768070944e-17 0.011073079611316725968 0.018999999999999996059" rpy="-1.570796326794896558 5.5233092179515394012e-17 0" />
+        <parent link="right_bracket" />
+        <child link="right_motor" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <joint name="rbracket_joint" type="fixed">
+        <origin xyz="0.048093999999999997863 0.015300527302599852691 0" rpy="0 -0 -1.570796326794896558" />
+        <parent link="bottom_plate" />
+        <child link="right_bracket" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <link name="spacer_1">
+        <visual>
+            <origin xyz="0 0 0" rpy="3.141592653589793116 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/spacer_1.stl"/>
+            </geometry>
+            <material name="spacer_1_material">
+                <color rgba="0.4000000000000000222 0.4000000000000000222 0.4000000000000000222 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="3.141592653589793116 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/spacer_1.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 1.6946216571476655386e-19 -0.017500000000000001665" rpy="0 0 0"/>
+            <mass value="0.00114793399322434919" />
+            <inertia ixx="1.2005476345804652536e-07" ixy="0"  ixz="0" iyy="1.2005476345804652536e-07" iyz="0" izz="5.7396699661217462886e-09" />
+        </inertial>
+    </link>
+
+    <link name="top_plate">
+        <visual>
+            <origin xyz="0.058093999999999999806 0.0240000000000000005 0" rpy="0 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/top_plate.stl"/>
+            </geometry>
+            <material name="top_plate_material">
+                <color rgba="0 0 0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.058093999999999999806 0.0240000000000000005 0" rpy="0 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/top_plate.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.058094000000000013684 0.022712642936933240961 0.0030000000000000000625" rpy="0 0 0"/>
+            <mass value="0.12155778176598631968" />
+            <inertia ixx="0.00021597171770147628907" ixy="0"  ixz="0" iyy="0.00013872402897952641537" iyz="0" izz="0.00035396639999040678233" />
+        </inertial>
+    </link>
+
+    <joint name="plate_joint" type="fixed">
+        <origin xyz="-0.020000000000000003886 -0.010000000000000001943 -0.034999999999999989453" rpy="3.141592653589793116 -0 0" />
+        <parent link="spacer_1" />
+        <child link="top_plate" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <joint name="spacer1_joint" type="fixed">
+        <origin xyz="-0.038094000000000002859 -0.034000000000000002442 0.0060000000000000001249" rpy="3.141592653589793116 -0 0" />
+        <parent link="bottom_plate" />
+        <child link="spacer_1" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <link name="spacer_2">
+        <visual>
+            <origin xyz="-0.031000000000000003247 0 0" rpy="3.141592653589793116 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/spacer_2.stl"/>
+            </geometry>
+            <material name="spacer_2_material">
+                <color rgba="0.4000000000000000222 0.4000000000000000222 0.4000000000000000222 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-0.031000000000000003247 0 0" rpy="3.141592653589793116 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/spacer_2.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="-1.0408340855860842566e-17 -1.6218571576157360825e-19 -0.017500000000000001665" rpy="0 0 0"/>
+            <mass value="0.0011479339932243496237" />
+            <inertia ixx="1.2005476345804655183e-07" ixy="0"  ixz="0" iyy="1.2005476345804655183e-07" iyz="0" izz="5.7396699661217504245e-09" />
+        </inertial>
+    </link>
+
+    <joint name="spacer2_joint" type="fixed">
+        <origin xyz="0.038094000000000002859 -0.034000000000000002442 0.0060000000000000001249" rpy="3.141592653589793116 -0 0" />
+        <parent link="bottom_plate" />
+        <child link="spacer_2" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <link name="spacer_3">
+        <visual>
+            <origin xyz="0 -0.050000000000000002776 0" rpy="3.141592653589793116 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/spacer_3.stl"/>
+            </geometry>
+            <material name="spacer_3_material">
+                <color rgba="0.4000000000000000222 0.4000000000000000222 0.4000000000000000222 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 -0.050000000000000002776 0" rpy="3.141592653589793116 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/spacer_3.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="9.475653756466867793e-20 0 -0.017500000000000001665" rpy="0 0 0"/>
+            <mass value="0.0011479339932243489732" />
+            <inertia ixx="1.2005476345804644596e-07" ixy="0"  ixz="0" iyy="1.2005476345804644596e-07" iyz="0" izz="5.7396699661217429799e-09" />
+        </inertial>
+    </link>
+
+    <joint name="spacer3_joint" type="fixed">
+        <origin xyz="-0.038093999999999988981 0.054601054605199692005 0.0060000000000000001249" rpy="3.141592653589793116 -0 0" />
+        <parent link="bottom_plate" />
+        <child link="spacer_3" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <link name="spacer_4">
+        <visual>
+            <origin xyz="-0.032000000000000000666 -0.056000000000000008105 0" rpy="3.141592653589793116 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/spacer_4.stl"/>
+            </geometry>
+            <material name="spacer_4_material">
+                <color rgba="0.4000000000000000222 0.4000000000000000222 0.4000000000000000222 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-0.032000000000000000666 -0.056000000000000008105 0" rpy="3.141592653589793116 -0 0" />
+            <geometry>
+                <mesh filename="package://artist_description/meshes/spacer_4.stl"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="6.9388939039072283776e-18 -6.9388939039072283776e-18 -0.017500000000000001665" rpy="0 0 0"/>
+            <mass value="0.0011479339932243496237" />
+            <inertia ixx="1.2005476345804655183e-07" ixy="0"  ixz="0" iyy="1.2005476345804655183e-07" iyz="0" izz="5.7396699661217562148e-09" />
+        </inertial>
+    </link>
+
+    <joint name="spacer4_joint" type="fixed">
+        <origin xyz="0.038093999999999988981 0.054601054605199692005 0.0060000000000000001249" rpy="3.141592653589793116 -0 0" />
+        <parent link="bottom_plate" />
+        <child link="spacer_4" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/>
+    </joint>
+</robot>
