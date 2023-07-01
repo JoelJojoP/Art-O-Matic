@@ -1,0 +1,32 @@
+<robot name="artist" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:property name="standard_friction" value="0.2" />
+<xacro:property name="wheel_friction" value="100" />
+<xacro:property name="ball_friction" value="0.01" />
+
+<gazebo reference="bottom_plate">
+  <mu1>${standard_friction}</mu1>
+  <mu2>${standard_friction}</mu2>
+  <selfCollide>true</selfCollide>
+  <gravity>true</gravity>
+</gazebo>
+
+<gazebo reference="ball">
+  <mu1>${ball_friction}</mu1>
+  <mu2>${ball_friction}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="left_wheel">
+  <mu1>${wheel_friction}</mu1>
+  <mu2>${wheel_friction}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="rigth_wheel">
+  <mu1>${wheel_friction}</mu1>
+  <mu2>${wheel_friction}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+</robot>

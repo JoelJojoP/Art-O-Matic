@@ -1,0 +1,37 @@
+<robot name="artist" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="body_color" value="Gazebo/Black" />
+    <xacro:property name="motor_color" value="Gazebo/Grey" />
+
+    <gazebo reference="bottom_plate">
+        <material>${body_color}</material>
+    </gazebo>
+    <gazebo reference="top_plate">
+        <material>${body_color}</material>
+    </gazebo>
+    <gazebo reference="left_wheel">
+        <material>${body_color}</material>
+    </gazebo>
+    <gazebo reference="right_wheel">
+        <material>${body_color}</material>
+    </gazebo>
+    <gazebo reference="ball">
+        <material>${motor_color}</material>
+    </gazebo>
+    <gazebo reference="shell">
+        <material>${motor_color}</material>
+    </gazebo>
+    <gazebo reference="left_bracket">
+        <material>${motor_color}</material>
+    </gazebo>
+    <gazebo reference="right_bracket">
+        <material>${motor_color}</material>
+    </gazebo>
+    <gazebo reference="left_motor">
+        <material>${motor_color}</material>
+    </gazebo>
+    <gazebo reference="right_motor">
+        <material>${motor_color}</material>
+    </gazebo>
+
+</robot>
