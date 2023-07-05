@@ -1,0 +1,102 @@
+<launch>
+
+    <!-- Run Gazebo -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+    </include>
+
+    <group ns="artist0">
+        <include file="$(find artist_description)/launch/spawn_artist.launch">
+            <arg name="name" value="artist0"/>
+            <arg name="tf_prefix" value="artist0"/>
+            <arg name="x" value="0"/>
+            <arg name="y" value="0"/>
+        </include>
+    </group>
+
+    <group ns="artist1">
+        <include file="$(find artist_description)/launch/spawn_artist.launch">
+            <arg name="name" value="artist1"/>
+            <arg name="tf_prefix" value="artist1"/>
+            <arg name="x" value="0.5"/>
+            <arg name="y" value="0"/>
+        </include>
+    </group>
+
+    <group ns="artist2">
+        <include file="$(find artist_description)/launch/spawn_artist.launch">
+            <arg name="name" value="artist2"/>
+            <arg name="tf_prefix" value="artist2"/>
+            <arg name="x" value="1"/>
+            <arg name="y" value="0"/>
+        </include>
+    </group>
+
+    <group ns="artist3">
+        <include file="$(find artist_description)/launch/spawn_artist.launch">
+            <arg name="name" value="artist3"/>
+            <arg name="tf_prefix" value="artist3"/>
+            <arg name="x" value="1.5"/>
+            <arg name="y" value="0"/>
+        </include>
+    </group>
+
+    <group ns="artist4">
+        <include file="$(find artist_description)/launch/spawn_artist.launch">
+            <arg name="name" value="artist4"/>
+            <arg name="tf_prefix" value="artist4"/>
+            <arg name="x" value="2"/>
+            <arg name="y" value="0"/>
+        </include>
+    </group>
+
+    <group ns="artist5">
+        <include file="$(find artist_description)/launch/spawn_artist.launch">
+            <arg name="name" value="artist5"/>
+            <arg name="tf_prefix" value="artist5"/>
+            <arg name="x" value="0"/>
+            <arg name="y" value="-0.5"/>
+        </include>
+    </group>
+
+    <group ns="artist6">
+        <include file="$(find artist_description)/launch/spawn_artist.launch">
+            <arg name="name" value="artist6"/>
+            <arg name="tf_prefix" value="artist6"/>
+            <arg name="x" value="0.5"/>
+            <arg name="y" value="-0.5"/>
+        </include>
+    </group>
+
+    <group ns="artist7">
+        <include file="$(find artist_description)/launch/spawn_artist.launch">
+            <arg name="name" value="artist7"/>
+            <arg name="tf_prefix" value="artist7"/>
+            <arg name="x" value="1"/>
+            <arg name="y" value="-0.5"/>
+        </include>
+    </group>
+
+    <group ns="artist8">
+        <include file="$(find artist_description)/launch/spawn_artist.launch">
+            <arg name="name" value="artist8"/>
+            <arg name="tf_prefix" value="artist8"/>
+            <arg name="x" value="1.5"/>
+            <arg name="y" value="-0.5"/>
+        </include>
+    </group>
+
+    <group ns="artist9">
+        <include file="$(find artist_description)/launch/spawn_artist.launch">
+            <arg name="name" value="artist9"/>
+            <arg name="tf_prefix" value="artist9"/>
+            <arg name="x" value="2.0"/>
+            <arg name="y" value="-0.5"/>
+        </include>
+    </group>
+
+</launch>
