@@ -1,0 +1,17 @@
+<launch>
+    <arg name="name" default="artist" />
+    <arg name="model" default="artist" />
+    <arg name="tf_prefix" default="$(optenv ROS_NAMESPACE)"/>
+
+    <arg name="x" default="0.0" />
+    <arg name="y" default="0.0" />
+    <arg name="z" default="0.2" /> 
+
+    <param name="robot_description" command="$(find xacro)/xacro $(find artist_description)/urdf/$(arg model).xacro" />
+    <param name="tf_prefix" type="string" value="$(arg tf_prefix)" />
+
+    <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -x $(arg x) -y $(arg y) -z $(arg z) -model $(arg name)" respawn="false" output="screen"/>
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
+        <param name="publish_frequency" type="double" value="50.0" />
+    </node>
+</launch>
