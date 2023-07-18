@@ -67,7 +67,7 @@ def main():
     cv2.namedWindow('canvas')
     cv2.setMouseCallback('canvas', draw)
 
-    while(1):
+    while not rospy.is_shutdown():
         cv2.imshow('canvas', canvas)
         k = cv2.waitKey(1) & 0xFF
         if k == ord('q'):
