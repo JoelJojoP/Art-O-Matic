@@ -45,7 +45,7 @@ def get_target_pose():
 def publish_msg():
     global target, target_publisher
     for i in range(0, NO_OF_ROBOTS):
-        target_publisher[i].publish(geo.Point(target[i][0]/100, target[i][1]/100, 0))
+        target_publisher[i].publish(geo.Point(target[i][0]/500, target[i][1]/500, 0))
 
 #main function
 def main():
